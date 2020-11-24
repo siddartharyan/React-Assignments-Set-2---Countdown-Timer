@@ -5,10 +5,16 @@ const App = () => {
   let [time, setTime] = useState(0);
   const handleKeydown = (event) => {
     const input = document.getElementById("timeCount").value;
+    if (isNaN(input)) {
+      setTime(0);
+      return;
+    }
     if (input.length === 0) {
+      setTime(0);
       return;
     }
     if (Number(input) === 0) {
+      setTime(0);
       return;
     }
     const key = event.keyCode;
@@ -19,7 +25,7 @@ const App = () => {
   };
 
   const tick = () => {
-    if (time === 0) {
+    if (time === 0 || time <= 0) {
       return;
     }
     setTime(time - 1);
